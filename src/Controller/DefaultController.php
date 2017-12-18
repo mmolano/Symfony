@@ -13,10 +13,15 @@ class DefaultController extends Controller
      */
     public function homepage()
     {
+        /*
         return new Response(
             $this->get('twig')->render('homepage.html.twig', [
                 'thibaud' => 'He\'s awesome anyway 😎',
             ])
         );
+        */
+        return $this->render('homepage.html.twig', [
+            'thibaud' => 'He\'s awesome anyway 😎',
+        ]);
     }
 }
