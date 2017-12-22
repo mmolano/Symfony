@@ -20,16 +20,6 @@ class DefaultController extends Controller
         /** @var ProductRepository $repo */
         $repo = $manager->getRepository(Product::class);
 
-        $user = new User();
-        $user
-            ->setUsername('user')
-            ->setEmail('john.doe@gmail.com')
-            ->setPlainPassword('user')
-            ->addRole(User::ROLE_DEFAULT);
-        $manager->persist($user);
-        $manager->flush();
-
-
         return $this->render('homepage.html.twig', [
             'thibaud' => 'He\'s awesome anyway 😎',
         ]);
