@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Product;
+use App\Entity\User;
 use App\Repository\ProductRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -17,7 +18,17 @@ class DefaultController extends Controller
     {
         $manager = $this->getDoctrine()->getManager();
         /** @var ProductRepository $repo */
-        $repo    = $manager->getRepository(Product::class);
+        $repo = $manager->getRepository(Product::class);
+
+        $user = new User();
+        $user
+            ->setUsername('user')
+            ->setEmail('john.doe@gmail.com')
+            ->setPlainPassword('user')
+            ->addRole(User::ROLE_DEFAULT);
+        $manager->persist($user);
+        $manager->flush();
+
 
         return $this->render('homepage.html.twig', [
             'thibaud' => 'He\'s awesome anyway 😎',

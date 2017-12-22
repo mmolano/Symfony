@@ -7,6 +7,7 @@ use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ORM\EntityListeners({"App\Listener\UserListener"})
  * @ORM\Table(name="app_user")
  */
 class User implements AdvancedUserInterface, \Serializable
@@ -40,6 +41,11 @@ class User implements AdvancedUserInterface, \Serializable
      * @ORM\Column(type="string", length=128)
      */
     private $password;
+
+    /**
+     * @var string|null
+     */
+    private $plainPassword;
 
     /**
      * @var array
@@ -131,6 +137,26 @@ class User implements AdvancedUserInterface, \Serializable
     public function setPassword(string $password): User
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getPlainPassword(): ?string
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param null|string $plainPassword
+     *
+     * @return User
+     */
+    public function setPlainPassword(string $plainPassword): User
+    {
+        $this->plainPassword = $plainPassword;
 
         return $this;
     }
@@ -281,6 +307,7 @@ class User implements AdvancedUserInterface, \Serializable
      */
     public function eraseCredentials(): void
     {
+        $this->plainPassword = null;
     }
 
     /**

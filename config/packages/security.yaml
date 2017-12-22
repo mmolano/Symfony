@@ -1,13 +1,24 @@
 security:
-    # https://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+    encoders:
+        App\Entity\User:
+            algorithm: argon2i #brcypt
     providers:
-        in_memory: { memory: ~ }
+        app_provider:
+            entity:
+                class: App\Entity\User
+                property: username
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
+            pattern: ^/
             anonymous: ~
+            provider: app_provider
+            form_login:
+                login_path: login
+                check_path: login
+
 
             # activate different ways to authenticate
 
