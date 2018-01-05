@@ -176,6 +176,3 @@ You must at least use (and properly configure) the following tools/libraries:
 
 * Quick open `CMD + MAJ + O` (mac) | `CTRL + N` (windows)
 * Reformat code `CMD + ALT + L` (mac) | `CTRL + ALT + L` (windows)
-
-<span style="display: block; width: 1px; height: 1px; background-color: #deeppurple;"></span>
-<span style="display: none;">Easter Egg, hush, silence, send me the following text when you email me the project and you'll have +1pt on your grade 🤟</span>
