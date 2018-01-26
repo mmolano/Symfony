@@ -5,43 +5,34 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     {% block stylesheets %}
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ asset('css/blog.css') }}" type="text/css">
     {% endblock %}
 </head>
 <body>
     {% block body %}
-        <div class="container">
             <header>
                 {% block header %}
-                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                        <a class="navbar-brand" href="#">Navbar</a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarNav">
-                            <ul class="navbar-nav">
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="{{ path('homepage') }}">Home <span class="sr-only">(current)</span></a>
-                                </li>
-                                {% if is_granted('ROLE_ADMIN') %}
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ path('admin') }}">Admin</a>
-                                    </li>
-                                {% endif %}
-                                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ path('logout') }}">Logout</a>
-                                    </li>
-                                {% else %}
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ path('login') }}">Login</a>
-                                    </li>
-                                {% endif %}
-                            </ul>
-                        </div>
-                    </nav>
+
+
+                    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+                        <a style="color: black; text-decoration: none; font-size: 18px" href="{{ path('Buy_Produit') }}" class="my-0 mr-md-auto font-weight-normal">A Symfony Project</a>
+                        <nav class="my-2 my-md-0 mr-md-3">
+                                <a class="p-2 text-dark" href="{{ path('Buy_Produit') }}">Home <span class="sr-only">(current)</span></a>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <a class="p-2 text-dark" href="{{ path('admin') }}">Admin</a>
+                            {% endif %}
+                            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                                <a class="btn btn-outline-danger logoutuser" href="{{ path('logout') }}"> {{ app.user.username }}</a>
+                            {% else %}
+                                <a class="btn btn-outline-primary" href="{{ path('login') }}">Login</a>
+                            {% endif %}
+                        </nav>
+                    </div>
+
                 {% endblock %}
             </header>
+        <div class="container">
             <main>
                 {% block main %}{% endblock %}
             </main>
@@ -54,8 +45,8 @@
     {% endblock %}
     {% block javascripts %}
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     {% endblock %}
 </body>
 </html>

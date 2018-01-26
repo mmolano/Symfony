@@ -22,13 +22,14 @@ class ProductRepository extends ServiceEntityRepository
      *
      * @return array
      */
-    public function paginate(int $limit = 500, int $offset = 0): array
+    public function paginate(int $limit = 2, int $offset = 0): array
     {
         return $this->createQueryBuilder('p')
             ->setFirstResult($offset)
             ->setMaxResults($limit)
             ->getQuery()
             ->getResult();
+
     }
 
     /**

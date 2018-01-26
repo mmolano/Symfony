@@ -50,7 +50,7 @@ class User implements AdvancedUserInterface, \Serializable
     /**
      * @var array
      *
-     * @ORM\Column(type="json_array")
+     * @ORM\Column(type="array")
      */
     private $roles;
 

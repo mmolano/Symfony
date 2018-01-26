@@ -2,26 +2,37 @@
 
 namespace App\Controller;
 
+
 use App\Entity\Product;
+use App\Form\produitType;
 use App\Entity\User;
-use App\Repository\ProductRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
+
 
 class DefaultController extends Controller
 {
-    /**
-     * @Route(path="/", name="homepage")
-     */
-    public function homepage()
-    {
-        $manager = $this->getDoctrine()->getManager();
-        /** @var ProductRepository $repo */
-        $repo = $manager->getRepository(Product::class);
 
-        return $this->render('homepage.html.twig', [
-            'thibaud' => 'He\'s awesome anyway 😎',
-        ]);
+
+
+    /**
+     * @Route("/", name="Buy_Produit")
+     *
+     * @return Response
+     */
+    public function produit_listeAction($offset = 0){
+        $Repertoire = $this->getDoctrine()->getRepository('App:Product');
+
+        $produit = $Repertoire->findAll($offset, 2);
+
+        return $this->render('homepage.html.twig', array(
+            'produits'=>$produit
+
+        ));
+
     }
+
+
+
+
 }

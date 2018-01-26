@@ -1,8 +1,41 @@
-{{form(form)}}
+{% extends 'base.html.twig' %}
+
+{% block main %}
+<h1>Please select the amout:</h1>
+    <hr>
+    {% for msg in app.session.flashBag.get('success') %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ msg }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endfor %}
+
 {% if nbr is defined %}
-		Vous ne pouvez pas acheter autant d'article en une seul fois
+    <br>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        Vous ne pouvez pas acheter autant d'article en une seul fois
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
 {% endif %}
 
 {% if stock is defined %}
-		Il n'y à pas assez d'article en magasin
+    <br>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        Il n'y a pas assez d'article en magasin.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
 {% endif %}
+
+{{form(form)}}
+
+
+	<hr>
+{% endblock %}
