@@ -1,0 +1,8 @@
+{{form(form)}}
+{% if nbr is defined %}
+		Vous ne pouvez pas acheter autant d'article en une seul fois
+{% endif %}
+
+{% if stock is defined %}
+		Il n'y à pas assez d'article en magasin
+{% endif %}
