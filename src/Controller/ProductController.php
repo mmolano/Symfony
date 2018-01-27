@@ -84,8 +84,7 @@ class ProductController extends Controller
            );
        }
 
-
-       dump($product);
+       
 
        return $this->render('produit/show.html.twig', array('product'=>$product));
 
